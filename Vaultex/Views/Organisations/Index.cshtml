@@ -1,0 +1,88 @@
+﻿@model PagedList.IPagedList<Vaultex.Models.Organisation>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Organisations";
+}
+
+<h2>Organisations</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().OrganisationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().OrganisationNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().AddressLine1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().AddressLine2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().AddressLine3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().AddressLine4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Town)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Postcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().F9)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrganisationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrganisationNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressLine1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressLine2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressLine3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressLine4)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Town)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Postcode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.F9)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = Model.PageSize }))
+    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Organisations
+</div>
